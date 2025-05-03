@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: alb-nodejs
+  name: alb-nodejs
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: alb-nodejs
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: alb-nodejs
+    spec:
+      containers:
+      - image: 263652000820.dkr.ecr.ap-south-1.amazonaws.com/akashplay:latest
+        name: akashplay
+        resources: {}
+status: {}

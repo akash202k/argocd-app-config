@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: alb-nodejs
+  namespace: argocd
+
+spec:
+  project: default
+
+  source: 
+    repoUrl: https://github.com/akash202k/argocd-app-config.git
+    targetRevision: HEAD
+    path: dev
+  desctination: 
+    server: https://kubernetes.default.svc
+    namespace: alb-nodejs
+
+  syncPolicy:
+    syncOptions: 
+    - CreateNamespace=true
+
+  automated:
+    selfHeal: true
+    prune: true
