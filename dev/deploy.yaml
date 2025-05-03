@@ -18,7 +18,7 @@ spec:
         app: alb-nodejs
     spec:
       containers:
-      - image: 263652000820.dkr.ecr.ap-south-1.amazonaws.com/akashplay:latest
+      - image: nginx
         name: akashplay
         resources: {}
 status: {}
