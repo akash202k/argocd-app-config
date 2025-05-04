@@ -3,6 +3,16 @@ kind: Application
 metadata:
   name: alb-nodejs
   namespace: argocd
+  annotations:
+    # Enable image updater and point to your ECR image
+    argocd-image-updater.argoproj.io/image-list: app=263652000820.dkr.ecr.ap-south-1.amazonaws.com/akashplay  
+    # Strategy to track latest tag (or change to semver if needed)
+    argocd-image-updater.argoproj.io/app.update-strategy: latest
+    # How to update — push changes to Git repo
+    argocd-image-updater.argoproj.io/write-back-method: git
+    argocd-image-updater.argoproj.io/write-back-config: branch=main
+    # Optional: Use your ECR credentials secret
+    argocd-image-updater.argoproj.io/secret: regcred-ecr
 
 spec:
   project: default
@@ -11,6 +21,7 @@ spec:
     repoURL: https://github.com/akash202k/argocd-app-config.git
     targetRevision: HEAD
     path: dev
+
   destination: 
     server: https://kubernetes.default.svc
     namespace: alb-nodejs
